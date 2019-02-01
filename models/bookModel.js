@@ -11,4 +11,5 @@ const bookModel = new Schema(
   }
 );
 
-module.exports = mongoose.model('Book', bookModel,'Books');
+// Books is collection name on Mongodb
+module.exports = mongoose.model('Book', bookModel, 'Books');
