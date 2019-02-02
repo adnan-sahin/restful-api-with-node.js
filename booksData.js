@@ -1,3 +1,7 @@
+// IMPORT JSON DATA TO MONGODB
+// >mongoimport --collection Books --file booksData.js --jsonArray
+
+/* eslint-disable */
 [
   {
     title: 'War and Peace',
