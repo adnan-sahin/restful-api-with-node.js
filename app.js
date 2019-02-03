@@ -4,11 +4,19 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true }).then(() => {
-  console.log('Database connection successful');
-}).catch((err) => {
-  console.error(err);
-});
+if (process.env.ENV === 'Test') {
+  mongoose.connect('mongodb://localhost:27017/Integration_Test', { useNewUrlParser: true }).then(() => {
+    console.log('Database connection successful(Test)');
+  }).catch((err) => {
+    console.error(err);
+  });
+} else {
+  mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true }).then(() => {
+    console.log('Database connection successful(Real)');
+  }).catch((err) => {
+    console.error(err);
+  });
+}
 
 
 const port = process.env.PORT || 3000;
@@ -27,6 +35,8 @@ app.get('/', (req, res) => {
 });
 
 
-app.listen(port, () => {
+app.server = app.listen(port, () => {
   console.log(`Server is running on ${port}`);
 });
+
+module.exports = app;
