@@ -3,7 +3,7 @@ function booksController(Book) {
     const book = new Book(req.body);
     if (!req.body.title) {
       res.status(400);
-      res.send({ code: 2002, message: 'Title is required.' });
+      return res.send({ code: 2002, message: 'Title is required.' });
     }
     book.save();
 
